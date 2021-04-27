@@ -26,6 +26,9 @@
     "eslint": "^7.22.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.7.0",
-    "nightwatch": "^1.5.1"
+    "fibers": "^5.0.0",
+    "nightwatch": "^1.5.1",
+    "sass": "^1.32.11",
+    "sass-loader": "^10.1.1"
   }
 }
