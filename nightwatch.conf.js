@@ -1,5 +1,6 @@
 // Refer to the online docs for more details: https://nightwatchjs.org/gettingstarted/configuration/
-const Services = {}; loadServices()
+const Services = {}
+loadServices()
 
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
@@ -77,7 +78,7 @@ module.exports = {
         // default_path_prefix: '/wd/hub',
         use_legacy_jsonwire: true,
         port: 4444,
-        server_path: (Services.geckodriver ? Services.geckodriver.path : ''),
+        server_path: Services.geckodriver ? Services.geckodriver.path : '',
         cli_args: [
           // very verbose geckodriver logs
           // '-vv'
@@ -104,7 +105,7 @@ module.exports = {
       webdriver: {
         start_process: true,
         port: 9515,
-        server_path: (Services.chromedriver ? Services.chromedriver.path : ''),
+        server_path: Services.chromedriver ? Services.chromedriver.path : '',
         cli_args: [
           // --verbose
         ]
@@ -184,10 +185,16 @@ module.exports = {
       selenium: {
         start_process: true,
         port: 4444,
-        server_path: (Services.seleniumServer ? Services.seleniumServer.path : ''),
+        server_path: Services.seleniumServer
+          ? Services.seleniumServer.path
+          : '',
         cli_args: {
-          'webdriver.gecko.driver': (Services.geckodriver ? Services.geckodriver.path : ''),
-          'webdriver.chrome.driver': (Services.chromedriver ? Services.chromedriver.path : '')
+          'webdriver.gecko.driver': Services.geckodriver
+            ? Services.geckodriver.path
+            : '',
+          'webdriver.chrome.driver': Services.chromedriver
+            ? Services.chromedriver.path
+            : ''
         }
       }
     },
@@ -217,7 +224,7 @@ module.exports = {
   }
 }
 
-function loadServices () {
+function loadServices() {
   try {
     Services.seleniumServer = require('selenium-server')
   } catch (err) {}

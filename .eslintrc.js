@@ -1,12 +1,27 @@
 module.exports = {
-  singleQuote: true,
   root: true,
   env: {
     browser: true,
     node: true
   },
-  extends: ["@nuxtjs/eslint-config-typescript", "plugin:nuxt/recommended"],
+  extends: [
+    '@nuxtjs/eslint-config-typescript',
+    'prettier',
+    'plugin:nuxt/recommended',
+    'plugin:prettier/recommended'
+  ],
   plugins: [],
   // add your custom rules here
-  rules: {}
-};
+  rules: {
+    'prettier/prettier': [
+      'warn',
+      {
+        singleQuote: true,
+        semi: false,
+        trailingComma: 'none'
+      }
+    ],
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+  }
+}
