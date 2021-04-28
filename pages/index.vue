@@ -1,28 +1,22 @@
 <template>
   <div class="product-search-wrapper">
     <Header />
+    <div class="product-search-content">
+      <Sidebar />
+      <ProductList />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "nuxt-property-decorator";
+import Vue from "vue";
+import Header from "../components/Header.vue";
+import Sidebar from "../components/Sidebar.vue";
+import ProductList from "../components/ProductList.vue";
 
-@Component({
-  head() {
-    return {
-      title: "Search Products",
-      meta: [
-        {
-          hid: "description",
-          name: "decription",
-          content:
-            "In this exercise I will focus only on the frontend side with Vue and create a small service, which connects the ebay product feed and provides an interface to get product data."
-        }
-      ]
-    };
-  }
-})
-export default class ProductSearch extends Vue {}
+export default Vue.extend({
+  components: { Header, Sidebar, ProductList }
+});
 </script>
 
 <style lang="sass">
@@ -36,14 +30,13 @@ div, a, p, span
     line-height: normal
 
 a
-    text-decoration: none
+  text-decoration: none
 
-#root
+:root, #__nuxt, #__layout
     height: 100%
 </style>
 
 <style lang="sass" scoped>
-
 .product-search-wrapper
     height: 100%
     display: flex

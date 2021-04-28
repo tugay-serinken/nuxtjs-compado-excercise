@@ -1,11 +1,7 @@
 <template>
-  <div className="filter-button">
+  <div class="filter-button">
     <p>Hide</p>
-    <FilterIcon
-      className="filter-icon"
-      name="sorting_options"
-      style="height:10px; width:10px"
-    />
+    <FilterIcon className="filter-icon" name="sorting_options" />
   </div>
 </template>
 

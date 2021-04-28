@@ -7,7 +7,7 @@
   />
 </template>
 
-<script lang="ts">
+<script lang="js">
 export default {
   props: {
     name: {
@@ -16,11 +16,11 @@ export default {
     },
     height: {
       type: Number,
-      default: ""
+      default: 20
     },
     width: {
       type: Number,
-      default: ""
+      default: 20
     },
     fill: {
       type: String,
@@ -42,7 +42,7 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 .icon-source
     line-height: 0
 svg

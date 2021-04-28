@@ -5,23 +5,23 @@ module.exports = {
     node: true
   },
   extends: [
-    '@nuxtjs/eslint-config-typescript',
-    'prettier',
-    'plugin:nuxt/recommended',
-    'plugin:prettier/recommended'
+    "@nuxtjs/eslint-config-typescript",
+    "prettier",
+    "plugin:nuxt/recommended",
+    "plugin:prettier/recommended"
   ],
   plugins: [],
   // add your custom rules here
   rules: {
-    'prettier/prettier': [
-      'warn',
+    "prettier/prettier": [
+      "warn",
       {
         singleQuote: true,
         semi: false,
-        trailingComma: 'none'
+        trailingComma: "none"
       }
     ],
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
   }
-}
+};
