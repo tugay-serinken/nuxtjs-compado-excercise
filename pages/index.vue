@@ -5,9 +5,24 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Vue, Component } from 'nuxt-property-decorator'
 
-export default Vue.extend({});
+@Component({
+  head() {
+    return {
+      title: 'Search Products',
+      meta: [
+        {
+          hid: 'description',
+          name: 'decription',
+          content:
+            'In this exercise I will focus only on the frontend side with Vue and create a small service, which connects the ebay product feed and provides an interface to get product data.'
+        }
+      ]
+    }
+  }
+})
+export default class ProductSearch extends Vue {}
 </script>
 
 <style lang="sass" scoped>
