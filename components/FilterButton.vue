@@ -10,11 +10,15 @@
 </template>
 
 <script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
 import FilterIcon from './Icon.vue'
 
-export default {
-  components: { FilterIcon }
-}
+@Component({
+  components: {
+    FilterIcon
+  }
+})
+export default class FilterButton extends Vue {}
 </script>
 
 <style lang="sass" scoped>
@@ -25,12 +29,12 @@ export default {
   height: 30px
   padding-right: 50px
   @media (max-width: 1400px)
-      p
-          display: none
+    p
+      display: none
 
   p
-      font-size: 16px
-      padding-right: 8px
+    font-size: 16px
+    padding-right: 8px
 
   &:hover
       cursor: pointer

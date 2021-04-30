@@ -12,34 +12,34 @@ export default {
   props: {
     name: {
       type: String,
-      default: ""
+      default: ''
     },
     height: {
       type: Number,
-      default: ""
+      default: ''
     },
     width: {
       type: Number,
-      default: ""
+      default: ''
     },
     fill: {
       type: String,
-      default: "#333"
+      default: '#333'
     },
     className: {
       type: String,
-      default: ""
+      default: ''
     }
   },
   computed: {
     iconStyle() {
       return {
-        "--height": this.height + "px",
-        "--width": this.width + "px"
-      };
+        '--height': this.height + 'px',
+        '--width': this.width + 'px'
+      }
     }
   }
-};
+}
 </script>
 
 <style lang="sass" scoped>
