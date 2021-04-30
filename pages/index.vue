@@ -1,11 +1,18 @@
 <template>
   <div class="product-search-wrapper">
     <Header />
+    <div class="product-search-content">
+      <Sidebar />
+      <ProductList />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
+import Header from '../components/Header.vue'
+import Sidebar from '../components/Sidebar.vue'
+import ProductList from '../components/ProductList.vue'
 
 @Component({
   head() {
@@ -20,7 +27,8 @@ import { Vue, Component } from 'nuxt-property-decorator'
         }
       ]
     }
-  }
+  },
+  components: { Header, Sidebar, ProductList }
 })
 export default class ProductSearch extends Vue {}
 </script>
@@ -36,14 +44,13 @@ div, a, p, span
     line-height: normal
 
 a
-    text-decoration: none
+  text-decoration: none
 
-#root
+:root, #__nuxt, #__layout
     height: 100%
 </style>
 
 <style lang="sass" scoped>
-
 .product-search-wrapper
     height: 100%
     display: flex
