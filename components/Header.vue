@@ -1,12 +1,12 @@
 <template>
-  <div class="wrapper">
+  <div class="header-wrapper">
     <FilterButton />
     <ProductSearchbar />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 import FilterButton from './FilterButton.vue'
 import ProductSearchbar from './ProductSearchbar.vue'
 
@@ -17,7 +17,7 @@ export default class Header extends Vue {}
 </script>
 
 <style lang="sass" scoped>
-.wrapper
+.header-wrapper
   flex: 0 0 auto
   z-index: 1
   display: flex

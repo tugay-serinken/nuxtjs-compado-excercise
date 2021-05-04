@@ -1,17 +1,17 @@
 <template>
   <div class="filter-button">
     <p>Hide</p>
-    <FilterIcon class="filter-icon" name="sorting_options" />
+    <Icon class="filter-icon" name="sorting_options" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import FilterIcon from './Icon.vue'
+import { Component, Vue } from 'nuxt-property-decorator'
+import Icon from './Icon.vue'
 
 @Component({
   components: {
-    FilterIcon
+    Icon
   }
 })
 export default class FilterButton extends Vue {}
