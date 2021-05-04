@@ -1,7 +1,15 @@
 <template>
-  <div class="range-slider-wrapper">
-    <p class="picked-range-text">$0 - $1000</p>
-    <!-- <RangePicker /> -->
+  <div class="price-range-wrapper">
+    <p class="picked-range-text">
+      ${{ selectedRange[0] }} - ${{ selectedRange[1] }}
+    </p>
+    <RangePicker
+      v-model="selectedRange"
+      max="1000"
+      tooltip-formatter="${value}"
+      :dot-options="dotOptions"
+      :rail-style="railStyle"
+    />
     <div class="range-text-wrapper">
       <span>$0</span>
       <span>$1000</span>
@@ -9,45 +17,52 @@
   </div>
 </template>
 
-<script>
-// import RangePicker from "./RangePicker.vue";
-export default {
-  components: {}
-};
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+// @ts-ignore
+import RangePicker from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
+import 'vue-slider-component/dist-css/vue-slider-component.css'
+import 'vue-slider-component/theme/material.css'
+
+@Component({
+  components: { RangePicker }
+})
+export default class PriceRangePicker extends Vue {
+  selectedRange: [number, number] = [0, 1000]
+  railStyle: object = { backgroundColor: 'rgba(51, 51, 51, 0.3)' }
+  dotOptions: object = {
+    tooltipStyle: {
+      backgroundColor: '#333'
+    },
+    style: {
+      backgroundColor: '#333'
+    }
+  }
+}
 </script>
 
 <style lang="sass" scoped>
-.range-slider-wrapper
-    margin: 10px 0
-    .input-range__slider
-        background-color: #ccc
-        background-image: none
-        border: none
-        border-radius: 10px
-        height: 27px
-        margin-left: 0
-        top: -5px
-        width: 3px
-        &:active
-            background-color: #555
+.price-range-wrapper
+  margin: 10px 0
 
-    .input-range__track
-        background-color: #e4e3e3
+  .picked-range-text
+    text-align: center
+    margin: 0
+    padding-top: 4px
 
-    .input-range__track--active
-        background: #555
+  .range-text-wrapper
+    display: flex
+    justify-content: space-between
+    font-size: 14px
+    color: #777
+    padding-top: 8px
+</style>
 
-    .input-range__label-container
-        display: none
+<style lang="sass">
+.vue-slider-process
+  background-color: #333
 
-    .picked-range-text
-        text-align: center
-        margin: 0
-        padding-top: 4px
-    .range-text-wrapper
-        display: flex
-        justify-content: space-between
-        font-size: 14px
-        color: #777
-        padding-top: 8px
+.vue-slider-dot-handle
+  &::after
+    background-color: rgba(51, 51, 51, 0.3)
 </style>
