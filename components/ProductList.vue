@@ -1,5 +1,9 @@
 <template>
-  <div class="product-list-wrapper">
+  <div v-if="isLoading" class="product-list-wrapper">
+    <LoadingIndicator />
+  </div>
+
+  <div v-else class="product-list-wrapper">
     <h2 class="product-list-title">message</h2>
     <div class="product-list-grid">
       <ProductCard />
@@ -8,11 +12,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-import ProductCard from './ProductCard.vue'
-
+import { Component, Vue } from "nuxt-property-decorator";
+import ProductCard from "./ProductCard.vue";
+import LoadingIndicator from "./LoadingIndicator.vue";
 @Component({
-  components: { ProductCard }
+  components: { ProductCard, LoadingIndicator },
+  computed: {
+    isLoading() {
+      return this.$store.state.isLoading;
+    }
+  }
 })
 export default class ProductList extends Vue {}
 </script>
