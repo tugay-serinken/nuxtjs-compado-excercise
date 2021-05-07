@@ -33,9 +33,9 @@ export default class Sidebar extends Vue {}
   @media (max-width: 920px)
     width: 80%
 
-  .sidebar-title
-    padding-bottom: 20px
-    border-bottom: 1px dashed #cccccc
+.sidebar-title
+  padding-bottom: 20px
+  border-bottom: 1px dashed #cccccc
 
 .sidebar-hidden
   width: 0px
