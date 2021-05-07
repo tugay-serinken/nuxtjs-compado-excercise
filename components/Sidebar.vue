@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-wrapper">
+  <div :class="[isSidebarOpen ? 'sidebar-wrapper' : 'sidebar-hidden']">
     <h3 class="sidebar-title">FILTER SELECTION</h3>
     <span class="sidebar-label">PRICE</span>
     <PriceRangePicker />
@@ -7,11 +7,16 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
-import PriceRangePicker from './PriceRangePicker.vue'
+import { Vue, Component } from "nuxt-property-decorator";
+import PriceRangePicker from "./PriceRangePicker.vue";
 
 @Component({
-  components: { PriceRangePicker }
+  components: { PriceRangePicker },
+  computed: {
+    isSidebarOpen() {
+      return this.$store.state.isSidebarOpen;
+    }
+  }
 })
 export default class Sidebar extends Vue {}
 </script>

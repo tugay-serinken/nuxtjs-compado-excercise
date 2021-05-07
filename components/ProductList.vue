@@ -1,19 +1,24 @@
 <template>
-  <div class="product-list-wrapper">
-    <h2 v-show="products.length > 0" class="product-list-title">
-      Show all {{ products.length }} results
-    </h2>
-    <h2
-      v-show="searchText.length > 1 && products.length === 0"
-      class="product-list-title"
-    >
-      No items found
-    </h2>
-    <h2 v-show="searchText.length < 2" class="product-list-title">
-      Please enter the product which you are looking for
-    </h2>
-    <div class="product-list-grid">
-      <ProductCard />
+  <div>
+    <div v-show="isLoading" class="product-list-wrapper">
+      <LoadingIndicator />
+    </div>
+    <div v-show="!isLoading" class="product-list-wrapper">
+      <h2 v-show="products.length > 0" class="product-list-title">
+        Show all {{ products.length }} results
+      </h2>
+      <h2
+        v-show="searchText.length > 1 && products.length === 0"
+        class="product-list-title"
+      >
+        No items found
+      </h2>
+      <h2 v-show="searchText.length < 2" class="product-list-title">
+        Please enter the product which you are looking for
+      </h2>
+      <div class="product-list-grid">
+        <ProductCard />
+      </div>
     </div>
   </div>
 </template>
@@ -22,9 +27,15 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import { Product } from '../types'
 import ProductCard from './ProductCard.vue'
+import LoadingIndicator from './LoadingIndicator.vue'
 
 @Component({
-  components: { ProductCard }
+  components: { ProductCard, LoadingIndicator },
+  computed: {
+    isLoading() {
+      return this.$store.state.isLoading
+    }
+  }
 })
 export default class ProductList extends Vue {
   products: Array<Product> = []
