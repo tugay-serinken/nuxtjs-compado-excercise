@@ -1,51 +1,52 @@
-import { GetterTree, MutationTree } from "vuex";
+import { GetterTree, MutationTree } from 'vuex'
+import { Product, Range, State } from '~/types'
 
 export const state = () => ({
   products: [],
   isLoading: false,
-  errorMessage: "",
-  searchText: "",
+  errorMessage: '',
+  searchText: '',
   isSidebarOpen: false,
   selectedRange: { min: 0, max: 1000 }
-});
+})
 
-export type RootState = ReturnType<typeof state>;
+export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
-  isSidebarOpen: state => state.isSidebarOpen
-};
+  isSidebarOpen: (state: State) => state.isSidebarOpen
+}
 
 export const mutations: MutationTree<RootState> = {
-  handleToggleSidebar: (state, isSidebarOpen: boolean) => {
-    state.isSidebarOpen = !isSidebarOpen;
+  handleToggleSidebar: (state: State, isSidebarOpen: boolean) => {
+    state.isSidebarOpen = !isSidebarOpen
   },
 
-  handleIsLoading: (state, isLoading: boolean) => {
-    state.isLoading = isLoading;
+  handleIsLoading: (state: State, isLoading: boolean) => {
+    state.isLoading = isLoading
   },
 
-  handleErrorMessage: (state, errorMessage: string) => {
-    state.errorMessage = errorMessage;
+  handleErrorMessage: (state: State, errorMessage: string) => {
+    state.errorMessage = errorMessage
   },
 
-  handleSearchText: (state, searchText: string) => {
-    state.searchText = searchText;
+  handleSearchText: (state: State, searchText: string) => {
+    state.searchText = searchText
   },
 
-  handleSetProducts: (state, products) => {
-    const _products = products;
+  handleSetProducts: (state: State, products: Product[]) => {
+    const _products = products
     const max =
       products.length > 0
         ? Math.max.apply(
             Math,
-            _products.map(p => p.price)
+            _products.map((product: Product) => product.price)
           )
-        : state.selectedRange.max;
-    state.selectedRange = { max, min: 0 };
-    state.products = products;
+        : state.selectedRange.max
+    state.selectedRange = { max, min: 0 }
+    state.products = products
   },
 
-  handelSetSelectedRange: (state, selectedRange) => {
-    state.selectedRange = selectedRange;
+  handelSetSelectedRange: (state: State, selectedRange: Range) => {
+    state.selectedRange = selectedRange
   }
-};
+}
