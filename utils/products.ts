@@ -1,5 +1,5 @@
-import { Product, Currency } from "../types";
-// @ts-ignore
+import { Product, Currency } from '../types'
+
 export const formatProducts = (products: any[]): Product[] => {
   return products.map(
     ({
@@ -17,7 +17,8 @@ export const formatProducts = (products: any[]): Product[] => {
       picture: galleryURL ? galleryURL[0] : null,
       category: primaryCategory[0].categoryName[0],
       currency:
-        Currency[sellingStatus[0].convertedCurrentPrice[0]["@currencyId"]]
+        // @ts-ignore
+        Currency[sellingStatus[0].convertedCurrentPrice[0]['@currencyId']]
     })
-  );
-};
+  )
+}

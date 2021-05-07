@@ -1,27 +1,27 @@
 <template>
   <div class="filter-button" @click="TOGGLE_SIDEBAR(isSidebarOpen)">
-    <p>{{ isSidebarOpen ? "Hide" : "Show" }}</p>
+    <p>{{ isSidebarOpen ? 'Hide' : 'Show' }}</p>
     <Icon class="filter-icon" name="sorting_options" />
   </div>
 </template>
 
 <script lang="ts">
-import { mapMutations } from "vuex";
-import { Component, Vue } from "nuxt-property-decorator";
+import { mapMutations } from 'vuex'
+import { Component, Vue } from 'nuxt-property-decorator'
 
-import Icon from "./Icon.vue";
+import Icon from './Icon.vue'
 @Component({
   components: {
     Icon
   },
   computed: {
     isSidebarOpen() {
-      return this.$store.state.isSidebarOpen;
+      return this.$store.state.isSidebarOpen
     }
   },
   methods: {
     ...mapMutations({
-      TOGGLE_SIDEBAR: "handleToggleSidebar"
+      TOGGLE_SIDEBAR: 'handleToggleSidebar'
     })
   }
 })

@@ -10,8 +10,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "nuxt-property-decorator";
-import LoadingIcon from "./Icon.vue";
+import { Component, Vue } from 'nuxt-property-decorator'
+import LoadingIcon from './Icon.vue'
 
 @Component({
   components: { LoadingIcon }

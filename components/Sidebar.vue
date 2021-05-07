@@ -7,14 +7,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "nuxt-property-decorator";
-import PriceRangePicker from "./PriceRangePicker.vue";
+import { Vue, Component } from 'nuxt-property-decorator'
+import PriceRangePicker from './PriceRangePicker.vue'
 
 @Component({
   components: { PriceRangePicker },
   computed: {
     isSidebarOpen() {
-      return this.$store.state.isSidebarOpen;
+      return this.$store.state.isSidebarOpen
     }
   }
 })
