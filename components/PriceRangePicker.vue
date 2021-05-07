@@ -5,7 +5,8 @@
     </p>
     <RangePicker
       v-model="selectedRange"
-      max="1000"
+      :max="max"
+      :min="min"
       tooltip-formatter="${value}"
       :dot-options="dotOptions"
       :rail-style="railStyle"
@@ -30,6 +31,8 @@ import 'vue-slider-component/theme/material.css'
 export default class PriceRangePicker extends Vue {
   selectedRange: [number, number] = [0, 1000]
   railStyle: object = { backgroundColor: 'rgba(51, 51, 51, 0.3)' }
+  max: number = 1000
+  min: number = 0
   dotOptions: object = {
     tooltipStyle: {
       backgroundColor: '#333'
