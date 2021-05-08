@@ -13,10 +13,7 @@ export type Product = {
   picture?: string
 }
 
-export type Range = {
-  min: number
-  max: number
-}
+export type Range = [number, number]
 
 export type State = {
   isSidebarOpen: boolean

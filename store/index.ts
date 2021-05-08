@@ -1,19 +1,19 @@
 import { GetterTree, MutationTree } from 'vuex'
 import { Product, Range, State } from '~/types'
 
-export const state = () => ({
+export const state = (): State => ({
   products: [],
   isLoading: false,
   errorMessage: '',
   searchText: '',
   isSidebarOpen: false,
-  selectedRange: { min: 0, max: 1000 }
+  selectedRange: [0, 1000]
 })
 
 export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
-  isSidebarOpen: (state: State) => state.isSidebarOpen
+  isSidebarOpen: (state: State): boolean => state.isSidebarOpen
 }
 
 export const mutations: MutationTree<RootState> = {
@@ -41,8 +41,8 @@ export const mutations: MutationTree<RootState> = {
             Math,
             _products.map((product: Product) => product.price)
           )
-        : state.selectedRange.max
-    state.selectedRange = { max, min: 0 }
+        : state.selectedRange[1]
+    state.selectedRange = [0, max]
     state.products = products
   },
 
