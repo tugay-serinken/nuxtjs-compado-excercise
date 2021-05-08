@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <div v-show="isLoading" class="product-list-wrapper">
+  <div class="product-list-wrapper">
+    <div v-show="isLoading">
       <LoadingIndicator />
     </div>
-    <div v-show="!isLoading" class="product-list-wrapper">
+    <div v-show="!isLoading">
       <h2 v-show="products.length > 0" class="product-list-title">
         Show all {{ products.length }} results
       </h2>
