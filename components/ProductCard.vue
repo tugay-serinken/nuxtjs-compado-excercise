@@ -28,8 +28,8 @@ import ViewIcon from './Icon.vue'
   components: { ViewIcon }
 })
 export default class ProductCard extends Vue {
-  @Prop({ default: 'iPhone 6S | 16GB | Silver' }) readonly name!: string
-  @Prop({ default: 89.9 }) price!: number
+  @Prop({ default: 'No Name' }) readonly name!: string
+  @Prop({ default: 0 }) price!: number
   @Prop({ default: '$' }) readonly currency!: string
   @Prop({ default: '' }) readonly picture!: string
   @Prop({ default: '' }) readonly viewItemURL!: string

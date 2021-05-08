@@ -16,8 +16,15 @@
       <h2 v-show="searchText.length < 2" class="product-list-title">
         Please enter the product which you are looking for
       </h2>
+      <h3 v-show="errorMessage" class="product-list-title error">
+        {{ errorMessage }}
+      </h3>
       <div class="product-list-grid">
-        <ProductCard />
+        <ProductCard
+          v-for="product in products"
+          :key="product.id"
+          {...product}
+        />
       </div>
     </div>
   </div>
@@ -32,15 +39,21 @@ import LoadingIndicator from './LoadingIndicator.vue'
 @Component({
   components: { ProductCard, LoadingIndicator },
   computed: {
-    isLoading() {
+    products(): Product[] {
+      return this.$store.getters.filteredProducts
+    },
+    isLoading(): boolean {
       return this.$store.state.isLoading
+    },
+    searchText(): string {
+      return this.$store.state.searchText
+    },
+    errorMessage(): string {
+      return this.$store.state.errorMessage
     }
   }
 })
-export default class ProductList extends Vue {
-  products: Array<Product> = []
-  searchText: string = ''
-}
+export default class ProductList extends Vue {}
 </script>
 
 <style lang="sass" scoped>
@@ -56,10 +69,13 @@ export default class ProductList extends Vue {
     padding-right: 130px
     padding-left: 130px
     padding-top: 30px
-    @media (max-width: 920px)
-      font-size: 16px
     @media (max-width: 1400px)
       font-size: 20px
+  .error
+    color: red
+    font-size: 20px
+    @media (max-width: 1400px)
+      font-size: 16px
 
   .product-list-grid
     display: flex

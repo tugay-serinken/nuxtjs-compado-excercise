@@ -13,7 +13,11 @@ export const state = (): State => ({
 export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
-  isSidebarOpen: (state: State): boolean => state.isSidebarOpen
+  filteredProducts: (state: State) =>
+    state.products.filter(
+      ({ price }) =>
+        price >= state.selectedRange[0] && price <= state.selectedRange[1]
+    )
 }
 
 export const mutations: MutationTree<RootState> = {
@@ -34,12 +38,11 @@ export const mutations: MutationTree<RootState> = {
   },
 
   handleSetProducts: (state: State, products: Product[]) => {
-    const _products = products
     const max =
       products.length > 0
         ? Math.max.apply(
             Math,
-            _products.map((product: Product) => product.price)
+            products.map((product: Product) => product.price)
           )
         : state.selectedRange[1]
     state.selectedRange = [0, max]
