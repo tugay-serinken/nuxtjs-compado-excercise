@@ -1,6 +1,11 @@
 <template>
   <div class="searchbar-wrapper">
-    <input class="searchbar-input" type="text" placeholder="Search products" />
+    <input
+      class="searchbar-input"
+      type="text"
+      placeholder="Search products"
+      @input="debounceSearch"
+    />
     <button class="searchbar-button" data-var="vsButton" aria-label="Search">
       <SearchIcon name="search" style="--width:24px; --height:24px" />
     </button>
@@ -14,7 +19,17 @@ import SearchIcon from './Icon.vue'
 @Component({
   components: { SearchIcon }
 })
-export default class ProductSearchbar extends Vue {}
+export default class ProductSearchbar extends Vue {
+  debounce!: number
+  searchText!: string
+  debounceSearch(event: Event) {
+    const target = event.target as HTMLInputElement
+    this.debounce = window.setTimeout(() => {
+      this.searchText = target.value
+      this.$store.dispatch('handleSearchChange', this.searchText)
+    }, 600)
+  }
+}
 </script>
 
 <style lang="sass" scoped>

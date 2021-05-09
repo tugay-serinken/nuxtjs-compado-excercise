@@ -1,5 +1,10 @@
-import { GetterTree, MutationTree } from 'vuex'
+import { GetterTree, ActionTree, MutationTree } from 'vuex'
+
 import { Product, Range, State } from '~/types'
+interface CancelToken {
+  [key: string]: any
+}
+let cancelToken: CancelToken
 
 export const state = (): State => ({
   products: [],
@@ -51,5 +56,34 @@ export const mutations: MutationTree<RootState> = {
 
   handelSetSelectedRange: (state: State, selectedRange: Range) => {
     state.selectedRange = selectedRange
+  },
+
+  handleSearchChange: (state: State, text) => {
+    state.searchText = text
+  }
+}
+
+export const actions: ActionTree<RootState, RootState> = {
+  async handleSearchChange({ commit }, text) {
+    if (typeof cancelToken !== typeof undefined) {
+      cancelToken.cancel('Operation canceled due to new request.')
+    }
+
+    cancelToken = this.$axios.CancelToken.source()
+
+    const uri = `https://compado-exercise-api.vietken.tech/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=WandoInt-217b-42d8-a699-e79808dd505e&RESPONSE-DATA-FORMAT=JSON&keywords=${encodeURIComponent(
+      text
+    )}`
+
+    try {
+      const results = await this.$axios.get(uri, {
+        cancelToken: cancelToken.token
+      })
+      console.log('results', results)
+    } catch (error) {
+      console.log(error)
+    }
+
+    commit('handleSearchChange', text)
   }
 }
