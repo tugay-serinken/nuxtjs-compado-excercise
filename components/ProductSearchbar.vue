@@ -20,14 +20,12 @@ import SearchIcon from './Icon.vue'
   components: { SearchIcon }
 })
 export default class ProductSearchbar extends Vue {
-  debounce!: number
-  searchText!: string
   debounceSearch(event: Event) {
     const target = event.target as HTMLInputElement
-    this.debounce = window.setTimeout(() => {
-      this.searchText = target.value
-      this.$store.dispatch('handleSearchChange', this.searchText)
-    }, 600)
+    window.setTimeout(
+      () => this.$store.dispatch('handleSearchChange', target.value),
+      600
+    )
   }
 }
 </script>
