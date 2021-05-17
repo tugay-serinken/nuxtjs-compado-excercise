@@ -16,9 +16,6 @@
       <h2 v-show="searchText.length < 2" class="product-list-title">
         Please enter the product which you are looking for
       </h2>
-      <h3 v-show="errorMessage" class="product-list-title error">
-        {{ errorMessage }}
-      </h3>
       <div class="product-list-grid">
         <ProductCard
           v-for="product in products"
@@ -47,9 +44,6 @@ import LoadingIndicator from './LoadingIndicator.vue'
     },
     searchText(): string {
       return this.$store.state.searchText
-    },
-    errorMessage(): string {
-      return this.$store.state.errorMessage
     }
   }
 })
@@ -71,11 +65,6 @@ export default class ProductList extends Vue {}
     padding-top: 30px
     @media (max-width: 1400px)
       font-size: 20px
-  .error
-    color: red
-    font-size: 20px
-    @media (max-width: 1400px)
-      font-size: 16px
 
   .product-list-grid
     display: flex
