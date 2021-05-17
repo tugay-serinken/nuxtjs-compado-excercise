@@ -19,7 +19,16 @@ export type State = {
   isSidebarOpen: boolean
   products: Product[]
   isLoading: boolean
-  errorMessage: string
   searchText: string
   selectedRange: Range
 }
+
+export const initialState = (): State => ({
+  products: [],
+  isLoading: false,
+  searchText: '',
+  isSidebarOpen: false,
+  selectedRange: [0, 1000]
+})
+
+export type RootState = ReturnType<typeof initialState>
