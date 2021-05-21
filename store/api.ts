@@ -1,4 +1,5 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
+import config from '../nuxt.config'
 import { Product } from '~/types'
 import { formatProducts } from '~/utils/products'
 
@@ -14,10 +15,7 @@ export const searchProducts = async (
   if (typeof cancelToken !== typeof undefined) {
     cancelToken.cancel('Operation canceled due to new request.')
   }
-
-  const uri = `https://compado-exercise-api.vietken.tech/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=WandoInt-217b-42d8-a699-e79808dd505e&RESPONSE-DATA-FORMAT=JSON&keywords=${encodeURIComponent(
-    text
-  )}`
+  const uri = `${config.endpoint}/photos?title_like=${text}`
 
   try {
     cancelToken = $axios.CancelToken.source()
@@ -26,8 +24,8 @@ export const searchProducts = async (
     })
     const data = await response.data
     console.log('response data', data)
-    const products =
-      data.findItemsByKeywordsResponse[0].searchResult[0]?.item || []
+
+    const products = data || []
     return formatProducts(products)
   } catch (error) {
     console.log(error)

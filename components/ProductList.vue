@@ -16,11 +16,15 @@
       <h2 v-show="searchText.length < 2" class="product-list-title">
         Please enter the product which you are looking for
       </h2>
+
       <div class="product-list-grid">
         <ProductCard
           v-for="product in products"
           :key="product.id"
-          {...product}
+          :title="product.title"
+          :url="product.url"
+          :thumbnail-url="product.thumbnailUrl"
+          :price="product.price"
         />
       </div>
     </div>

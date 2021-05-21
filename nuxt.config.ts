@@ -28,7 +28,11 @@ const config: NuxtConfig = {
   ],
   build: {},
   modules: ['@nuxtjs/axios'],
-  axios: {}
+  axios: {},
+  endpoint:
+    (process.env.NODE_ENV as string | undefined) === 'production'
+      ? 'https://jsonplaceholder.typicode.com'
+      : 'http://localhost:4000'
 }
 
 export default config

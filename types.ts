@@ -5,12 +5,15 @@ export enum Currency {
 
 export type Product = {
   id: string
-  name: string
+  name?: string
   price: number
   viewItemURL?: string
-  currency: Currency
+  currency?: Currency
   category?: string
   picture?: string
+  url?: string
+  thumbnailUrl?: string
+  title?: string
 }
 
 export type Range = [number, number]

@@ -3,15 +3,19 @@
     <div class="product-card-container">
       <img
         class="product-card-image"
-        :src="picture ? picture : require(`~/assets/default-image.png`)"
+        :src="url ? url : require(`~/assets/default-image.png`)"
       />
       <div class="product-card-detail">
-        <h3 class="product-card-title">{{ name }}</h3>
+        <h3 class="product-card-title">{{ title }}</h3>
         <p class="product-card-price">
           {{ currency + price.toFixed(2).split('.')[0]
           }}<span>.{{ price.toFixed(2).split('.')[1] }}</span>
         </p>
-        <a class="product-card-view-button" :href="viewItemURL" target="_blank">
+        <a
+          class="product-card-view-button"
+          :href="thumbnailUrl"
+          target="_blank"
+        >
           <ViewIcon class="product-card-view-icon" name="visible" />
           <p>View</p>
         </a>
@@ -28,11 +32,12 @@ import ViewIcon from './Icon.vue'
   components: { ViewIcon }
 })
 export default class ProductCard extends Vue {
-  @Prop({ default: 'No Name' }) readonly name!: string
+  @Prop({ default: 'No Name' }) readonly title!: string
   @Prop({ default: 0 }) price!: number
   @Prop({ default: '$' }) readonly currency!: string
-  @Prop({ default: '' }) readonly picture!: string
   @Prop({ default: '' }) readonly viewItemURL!: string
+  @Prop({ default: '' }) readonly url!: string
+  @Prop({ default: '' }) readonly thumbnailUrl!: string
 }
 </script>
 

@@ -1,24 +1,11 @@
-import { Product, Currency } from '../types'
+import { Product } from '../types'
 
 export const formatProducts = (products: any[]): Product[] => {
-  return products.map(
-    ({
-      itemId,
-      title,
-      sellingStatus,
-      viewItemURL,
-      galleryURL,
-      primaryCategory
-    }) => ({
-      id: itemId[0],
-      name: title[0],
-      price: parseFloat(sellingStatus[0].convertedCurrentPrice[0].__value__),
-      viewItemURL: viewItemURL[0],
-      picture: galleryURL ? galleryURL[0] : null,
-      category: primaryCategory[0].categoryName[0],
-      currency:
-        // @ts-ignore
-        Currency[sellingStatus[0].convertedCurrentPrice[0]['@currencyId']]
-    })
-  )
+  return products.map(({ id, title, url, thumbnailUrl }) => ({
+    id,
+    title,
+    url,
+    thumbnailUrl,
+    price: Math.floor(Math.random() * 1000) + 1
+  }))
 }

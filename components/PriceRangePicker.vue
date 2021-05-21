@@ -12,8 +12,8 @@
       :rail-style="railStyle"
     />
     <div class="range-text-wrapper">
-      <span>$0</span>
-      <span>$1000</span>
+      <span>${{ min }}</span>
+      <span>${{ selectedRange[1] }}</span>
     </div>
   </div>
 </template>
@@ -24,12 +24,25 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import RangePicker from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
 import 'vue-slider-component/dist-css/vue-slider-component.css'
 import 'vue-slider-component/theme/material.css'
+import { Product } from '~/types'
 
 @Component({
-  components: { RangePicker }
+  components: { RangePicker },
+  computed: {
+    selectedRange: {
+      get() {
+        return this.$store.state.selectedRange
+      },
+      set(value) {
+        this.$store.commit('handleSelectedRange', value)
+      }
+    },
+    products(): Product[] {
+      return this.$store.getters.filteredProducts
+    }
+  }
 })
 export default class PriceRangePicker extends Vue {
-  selectedRange: [number, number] = [0, 1000]
   railStyle: object = { backgroundColor: 'rgba(51, 51, 51, 0.3)' }
   max: number = 1000
   min: number = 0
