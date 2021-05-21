@@ -12,7 +12,7 @@
       :rail-style="railStyle"
     />
     <div class="range-text-wrapper">
-      <span>${{ min }}</span>
+      <span>${{ selectedRange[0] }}</span>
       <span>${{ selectedRange[1] }}</span>
     </div>
   </div>
