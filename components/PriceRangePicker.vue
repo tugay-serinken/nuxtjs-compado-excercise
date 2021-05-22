@@ -24,7 +24,6 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import RangePicker from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
 import 'vue-slider-component/dist-css/vue-slider-component.css'
 import 'vue-slider-component/theme/material.css'
-import { Product } from '~/types'
 
 @Component({
   components: { RangePicker },
@@ -36,9 +35,6 @@ import { Product } from '~/types'
       set(value) {
         this.$store.commit('handleSelectedRange', value)
       }
-    },
-    products(): Product[] {
-      return this.$store.getters.filteredProducts
     }
   }
 })

@@ -2,21 +2,23 @@
   <div class="loading-wrapper">
     <LoadingIcon
       class-name="loading-icon"
-      width="${200}"
-      height="${200}"
+      width="200px"
+      :height="height"
       name="loading"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import LoadingIcon from './Icon.vue'
 
 @Component({
   components: { LoadingIcon }
 })
-export default class LoadingIndicator extends Vue {}
+export default class LoadingIndicator extends Vue {
+  @Prop({ default: '200px' }) height!: string
+}
 </script>
 
 <style lang="sass" scoped>

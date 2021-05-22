@@ -1,8 +1,7 @@
 <template>
   <div class="product-list-wrapper">
-    <div v-show="isLoading">
-      <LoadingIndicator />
-    </div>
+    <LoadingIndicator v-show="isLoading" height="100%" />
+
     <div v-show="!isLoading">
       <h2 v-show="products.length > 0" class="product-list-title">
         Show all {{ products.length }} results
@@ -60,6 +59,7 @@ export default class ProductList extends Vue {}
   height: 100%
   overflow: hidden
   overflow-y: scroll
+
   .product-list-title
     font-size: 24px
     font-weight: bold

@@ -13,15 +13,15 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 @Component
 export default class Icon extends Vue {
   @Prop({ default: '', required: true }) name!: string
-  @Prop({ default: 20 }) readonly height!: number
-  @Prop({ default: 20 }) readonly width!: number
+  @Prop({ default: '20px' }) readonly height!: string
+  @Prop({ default: '20px' }) readonly width!: string
   @Prop({ default: '#333' }) fill!: string
   @Prop({ default: '' }) className!: string
 
   get iconStyle() {
     return {
-      '--height': this.height + 'px',
-      '--width': this.width + 'px',
+      '--height': this.height,
+      '--width': this.width,
       '--fill': this.fill
     }
   }
