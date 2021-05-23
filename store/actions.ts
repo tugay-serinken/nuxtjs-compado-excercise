@@ -6,9 +6,7 @@ const actions: ActionTree<RootState, RootState> = {
   async handleSearchChange({ commit, state }, searchText: string) {
     if (searchText.length > 1) {
       commit('handleIsLoading', true)
-
       const products = await searchProducts(searchText, this.$axios)
-
       const min =
         products.length > 0
           ? Math.min.apply(
@@ -16,7 +14,6 @@ const actions: ActionTree<RootState, RootState> = {
               products.map((product: Product) => product.price)
             )
           : state.selectedRange[0]
-
       const max =
         products.length > 0
           ? Math.max.apply(
