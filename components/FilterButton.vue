@@ -1,6 +1,6 @@
 <template>
   <div class="filter-button" @click="TOGGLE_SIDEBAR(isSidebarOpen)">
-    <p>{{ isSidebarOpen ? 'Hide' : 'Show' }}</p>
+    <p>{{ isSidebarOpen ? 'Hide Filter' : 'Show Filter' }}</p>
     <Icon class="filter-icon" name="sorting_options" />
   </div>
 </template>
